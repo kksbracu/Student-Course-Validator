@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slideshow</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Set font for body */
+            background-color: #f4f4f4; /* Light background color */
+            display: flex;
+            justify-content: center; /* Center the slideshow */
+            align-items: center; /* Center vertically */
+            height: 100vh; /* Full height */
+            margin: 0; /* Remove default margin */
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 800px; /* Set a maximum width */
+            background-color: #fff; /* White background for card effect */
+            border-radius: 10px; /* Rounded corners for the card */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            overflow: hidden; /* Hide overflow for rounded corners */
+            text-align: center; /* Center content inside the card */
+        }
+        .slides {
+            display: none; /* Hide all slides by default */
+            width: 100%; /* Full width for images */
+            height: 400px; /* Set a fixed height for all images */
+        }
+        .slides img {
+            width: 100%; /* Responsive image */
+            height: 100%; /* Match height to container */
+            object-fit: cover; /* Maintain aspect ratio */
+        }
+        .button-container {
+            margin: 10px 0; /* Add some margin above and below the buttons */
+        }
+        .prev, .next {
+            cursor: pointer;
+            padding: 10px 20px; /* Increased padding for larger buttons */
+            color: #007bff; /* Button text color */
+            background-color: #e7f3ff; /* Light background for buttons */
+            border: 1px solid #007bff; /* Border color */
+            border-radius: 5px; /* Rounded corners */
+            font-size: 16px;
+            margin: 0 5px; /* Space between buttons */
+            user-select: none;
+            transition: background-color 0.3s, color 0.3s; /* Transition for hover effect */
+        }
+        .prev:hover, .next:hover {
+            background-color: #007bff; /* Darker background on hover */
+            color: white; /* White text on hover */
+        }
+        /* Hide buttons by default */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="slideshow-container">
+    <div class="slides" style="display: block;"> <!-- Show the first image by default -->
+        <img src="https://thumbs.dreamstime.com/b/give-instruction-young-instructor-instructions-45476210.jpg" alt="Image 1">
+    </div>
+    <div class="slides">
+        <img src="https://img.freepik.com/premium-vector/entrepreneurs-announce-hiring-employees-work-company-young-woman-writes-job-application-attaches-her-educational-background-past-work-experience-consideration_1150-55439.jpg" alt="Image 2">
+    </div>
+    <div class="slides">
+        <img src="https://img.freepik.com/free-vector/human-resources-managers-doing-professional-staff-research-with-magnifier-human-resources-hr-team-work-headhunter-service-concept-illustration_335657-2061.jpg" alt="Image 3">
+    </div>
+    
+    <div class="button-container">
+        <button class="prev" id="prevBtn" onclick="plusSlides(-1)">&#10094; Prev</button>
+        <button class="next" id="nextBtn" onclick="plusSlides(1)">Next &#10095;</button>
+    </div>
+</div>
+
+<script>
+    let slideIndex = 1; // Start with the first image
+    showSlides(slideIndex); // Show the first image
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function showSlides(n) {
+        let i;
+        const slides = document.getElementsByClassName("slides");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        
+        if (n > slides.length) {slideIndex = 1} // Wrap to first image
+        if (n < 1) {slideIndex = slides.length} // Wrap to last image
+
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none"; // Hide all images
+        }
+        slides[slideIndex - 1].style.display = "block"; // Show the current image
+
+        // Show or hide buttons based on slide index
+        prevBtn.classList.toggle("hidden", slideIndex === 1); // Hide prev button on first image
+        nextBtn.classList.toggle("hidden", slideIndex === slides.length); // Hide next button on last image
+    }
+</script>
+
+</body>
+</html>
