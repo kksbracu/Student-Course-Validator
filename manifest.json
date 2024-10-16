@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Student Course Validator",
+  "version": "1.0",
+  "description": "This tool validates the Probation Status, Multiple Fail issue, Credit Limit, Prerequisite Status, Semester gap for retake status of students. This tool is created by KKS.",
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "icons/icon48.png" 
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": ["activeTab", "scripting"],
+  "content_scripts": [
+    {
+      "matches": ["https://usis.bracu.ac.bd/"],
+      "js": ["contentScript.js"]
+    }
+  ]
+}
